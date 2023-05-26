@@ -1,0 +1,40 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/stage_01_load_ans_save.py --config=params.yaml
+    deps:
+    - path: src/stage_01_load_ans_save.py
+      md5: 6d7a88be953f4d63c7547ecb86e93dbd
+      size: 940
+    params:
+      params.yaml:
+        artifacts.raw_local_data: artifacts/raw_local_data_dir/data.csv
+        data_source.s3_source: /Users/kashifjilani/Downloads/winequality-red.csv
+    outs:
+    - path: artifacts/raw_local_data_dir/data.csv
+      md5: 7c92f1ee593c0fbd2ad8c67ba5c446df
+      size: 91999
+  split_data:
+    cmd: python src/stage_02_split_data.py --config=params.yaml
+    deps:
+    - path: artifacts/raw_local_data_dir/data.csv
+      md5: 7c92f1ee593c0fbd2ad8c67ba5c446df
+      size: 91999
+    - path: src/stage_02_split_data.py
+      md5: 234a843eedeafc7a87d4ba4fe8a22f7c
+      size: 1207
+    params:
+      params.yaml:
+        artifacts.raw_local_data: artifacts/raw_local_data_dir/data.csv
+        artifacts.split_data.processed_data_dir: artifacts/processed_data
+        artifacts.split_data.test_path: artifacts/processed_data/test.csv
+        artifacts.split_data.train_path: artifacts/processed_data/train.csv
+        base.random_state: 42
+        base.test_size: 0.2
+    outs:
+    - path: artifacts/processed_data/test.csv
+      md5: b31a4073fa82bc444fd5683cb5cf7e76
+      size: 18511
+    - path: artifacts/processed_data/train.csv
+      md5: 0196b80fbeb701453fe0052e35635db2
+      size: 73634

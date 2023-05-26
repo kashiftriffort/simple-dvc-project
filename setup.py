@@ -12,8 +12,10 @@ setup(
     Long_description_content_type="text/markdown",
     url="https://github.com/kashiftriffort/simple-dvc-project/tree/main",
     author_email="kashif.triffort@gmail.com",
-    package_dir={"": "src"},
-    packages=find_packages(where="src"), licence="GNU", 
+    # package_dir={"": "src"},
+    # packages=find_packages(where="src"), licence="GNU", 
+    packages=["src"],
+    licence="GNU",
     python_requires=">=3.6",
     install_requires=[
         'dvc',
