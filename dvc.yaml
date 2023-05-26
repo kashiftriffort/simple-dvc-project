@@ -23,4 +23,5 @@ stages:
        - artifacts.split_data.test_path
     outs:
       - artifacts/processed_data/train.csv
-      - artifacts/processed_data/test.csv 
+      - artifacts/processed_data/test.csv
+  
