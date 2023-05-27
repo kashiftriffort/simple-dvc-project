@@ -19,7 +19,7 @@ artifacts:
 
   reports:
     reports_dir: artifacts/report
-    params: artifacts/report/param.json
+    params: artifacts/report/params.json
     scores: artifacts/report/scores.json
 
   model_dir: artifacts/saved_models
